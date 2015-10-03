@@ -1,0 +1,20 @@
+#!/bin/sh
+
+brew update
+brew upgrade
+
+TAPS=(
+    homebrew/dupes
+)
+brew tap ${TAPS[@]}
+
+FORMULAS=(
+    rbenv
+    ruby-build
+    rbenv-gem-rehash
+	git
+	mergepbx
+)
+brew install ${FORMULAS[@]}
+
+brew cleanup

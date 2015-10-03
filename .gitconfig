@@ -1,0 +1,29 @@
+[user]
+  name = Sergio Fernández
+  email = fdz.sergio@gmail.com
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  up = pull --rebase
+  punch = blame
+  pish = push
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  excludesfile = ~/.gitignore
+[apply]
+  whitespace = nowarn
+[merge]
+  tool = kdiff3
+[difftool]
+  prompt = false
+[push]
+  default = current
+[credential]
+  helper = osxkeychain
+[merge "mergepbx"]
+  name = Xcode project files merger
+  driver = mergepbx %O %A %B
+[mergetool]
+  keepBackup = false

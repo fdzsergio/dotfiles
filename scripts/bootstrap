@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "Configuring zsh shell…"
+chsh -s /bin/zsh
+
+echo "Installing Homebrew…"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+./scripts/homebrew
+
+echo "Installing Ruby…"
+rbenv install 2.2.3
+rbenv global 2.2.3
+gem install bundler
+
+echo "Change Terminal Theme…"
+open ./theme/developer.terminal
+
+echo "Done."
