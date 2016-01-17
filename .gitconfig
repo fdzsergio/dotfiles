@@ -22,8 +22,3 @@
   default = current
 [credential]
   helper = osxkeychain
-[merge "mergepbx"]
-  name = Xcode project files merger
-  driver = mergepbx %O %A %B
-[mergetool]
-  keepBackup = false
