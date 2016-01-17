@@ -8,9 +8,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 ./scripts/homebrew
 
 echo "Installing Ruby…"
-rbenv install 2.2.3
-rbenv global 2.2.3
-gem install bundler
+rbenv install 2.3.0
+rbenv global 2.3.0
+gem install bundler cocoapods cocoapods-keys cocoapods-stats cocoapods-deintegrate fastlane xcpretty fui synx
 
 echo "Change Terminal Theme…"
 open ./theme/developer.terminal
