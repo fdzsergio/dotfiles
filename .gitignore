@@ -15,3 +15,5 @@ tmtags
 *.moved-aside/
 DerivedData
 Pods
+.env
+Carthage
