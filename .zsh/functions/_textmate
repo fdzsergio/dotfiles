@@ -1,0 +1,10 @@
+function textmate() {
+	if [[ -z $1 ]]; then
+		mate .
+	else
+		mate $1
+		if [[ -d $1 ]]; then
+			cd $1
+		fi
+	fi
+}
