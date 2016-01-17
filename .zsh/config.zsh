@@ -11,22 +11,22 @@ autoload colors; colors;
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 setopt PROMPT_SUBST
 
-# RENV
+# RBENV
 autoload -U ~/.rbenv/shims
 export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 
 # Timer
-REPORTTIME=10 # print elapsed time when more than 10 seconds
+REPORTTIME=10
 
 # Quote pasted URLs
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
 # Misc options
-setopt NO_BG_NICE # don't nice background tasks
+setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
