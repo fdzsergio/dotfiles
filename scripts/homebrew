@@ -5,15 +5,22 @@ brew upgrade
 
 TAPS=(
     homebrew/dupes
+    homebrew/versions
+    caskroom/cask
+    caskroom/versions
 )
+
 brew tap ${TAPS[@]}
 
 FORMULAS=(
     rbenv
     ruby-build
-    rbenv-gem-rehash
-	git
-	mergepbx
+    git
+    libxml2
+    libxslt
+    libiconv
+    kdiff3
+    brew-cask
 )
 brew install ${FORMULAS[@]}
 
