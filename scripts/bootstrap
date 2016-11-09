@@ -1,18 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-echo "Configuring zsh shell…"
-chsh -s /bin/zsh
+source $SCRIPTS_PATH/functions
 
-echo "Installing Homebrew…"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-./scripts/homebrew
+info 'Installing Ruby'
+rbenv install 2.3.1
+rbenv global 2.3.1
 
-echo "Installing Ruby…"
-rbenv install 2.3.0
-rbenv global 2.3.0
-gem install bundler cocoapods cocoapods-keys cocoapods-stats cocoapods-deintegrate fastlane xcpretty fui synx
+info 'Installing Gems'
+gem install bundler cocoapods danger fastlane xcpretty xcode-install
+bundle config --global jobs `sysctl -n hw.ncpu`
 
-echo "Change Terminal Theme…"
-open ./theme/developer.terminal
-
-echo "Done."
+info 'Change Terminal Theme'
+open $DOTFILES_ROOT/theme/developer.terminal

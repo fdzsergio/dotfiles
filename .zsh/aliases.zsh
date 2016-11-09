@@ -12,13 +12,17 @@ alias la='ls -lAFh'
 # Git
 alias gsu='git submodule update --init --recursive'
 alias gs='git status'
+alias gp='git push'
+alias gu='git up'
+alias gc='git commit -a'
+compdef _git gs=git-status
 alias gut='git'
-alias cleanup_branches='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+alias gi='git'
 
 # Editor
 alias m='mate .'
 
-# Mac OS X
+# macOS
 alias o='open .'
 alias screensaver='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
@@ -31,6 +35,13 @@ alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData'
 
 # Brew
 alias cask="brew cask"
+
+# Chrome
+alias chrome='open -a "Google Chrome" --args --incognito'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; echo "DNS cache flushed"'
+
+# Tower
+alias tower='gittower'
 
 # Utilities
 alias t='tail -f'

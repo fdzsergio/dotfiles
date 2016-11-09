@@ -1,27 +1,21 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+source $SCRIPTS_PATH/functions
+
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew update
 brew upgrade
 
 TAPS=(
-    homebrew/dupes
-    homebrew/versions
-    caskroom/cask
-    caskroom/versions
+  homebrew/bundle
+  caskroom/cask
 )
 
 brew tap ${TAPS[@]}
 
-FORMULAS=(
-    rbenv
-    ruby-build
-    git
-    libxml2
-    libxslt
-    libiconv
-    kdiff3
-    brew-cask
-)
-brew install ${FORMULAS[@]}
+info 'Installing brew dependencies'
+brew bundle --file="$SCRIPTS_PATH/Brewfile"
 
-brew cleanup
+info 'Installing cask dependencies'
+brew bundle --file="$SCRIPTS_PATH/Caskfile"

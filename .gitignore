@@ -1,19 +1,13 @@
+# macOS
+.AppleDouble
 .DS_Store
-.svn
-*~
-.ackrc
-*.swp
-*.tmproj
-tmtags
-.sass-cache
-.bundle
-*xcuserdata/
-*build/
-*.mode1v3
-*.pbxuser
-*.xcworkspace
-*.moved-aside/
-DerivedData
-Pods
-.env
-Carthage
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Xcode
+*.xccheckout
+*.xcscmblueprint
+xcuserdata
+Carthage/
+Pods/

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+setup_dotfiles () {
+  chmod +x "$SCRIPTS_PATH/bootstrap"
+  chmod +x "$SCRIPTS_PATH/defaults"
+  chmod +x "$SCRIPTS_PATH/homebrew"
+}
+
+change_shell_to_zsh () {
+  chsh -s /bin/zsh
+}
+
+run () {
+  sh $SCRIPTS_PATH/$1
+}
+
+install_dotfiles () {
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 1 -name '.*' -not -path '*.git')
+  do
+    dst="$HOME/$(basename "${src}")"
+    cp -R "$src" "$dst"
+  done
+}

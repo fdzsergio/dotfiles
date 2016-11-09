@@ -14,15 +14,5 @@ function xc {
 function simulator {
   local devfolder
   devfolder="$(xcode-select -p)"
-
-  # Xcode ≤ 5.x
-  if [[ -d "${devfolder}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app" ]]; then
-    open "${devfolder}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"
-  # Xcode ≥ 6.x
-  elif [[ -d "${devfolder}/Applications/iOS Simulator.app" ]]; then
-    open "${devfolder}/Applications/iOS Simulator.app"
-  # Xcode ≥ 7.x
-  else
-    open "${devfolder}/Applications/Simulator.app"
-  fi
+  open "${devfolder}/Applications/Simulator.app"
 }
