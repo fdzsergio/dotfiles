@@ -1,13 +1,11 @@
 # cd
+alias .='cd .'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ,,='cd ..'
-alias ,,,='cd ../..'
+alias ....='cd ../../..'
 
 # ls
 alias ls='ls -F'
-alias l='ls -lFh'
-alias la='ls -lAFh'
 
 # Git
 alias gsu='git submodule update --init --recursive'
@@ -20,7 +18,11 @@ alias gut='git'
 alias gi='git'
 
 # Editor
-alias m='mate .'
+alias c='code .'
+
+# Rails
+alias tlog='tail -f log/development.log'
+alias b='bundle exec'
 
 # macOS
 alias o='open .'
@@ -55,5 +57,5 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+# Homebrew
+alias brewup='brew update && brew doctor && brew outdated && brew upgrade && brew cleanup -s --prune=1'

@@ -1,2 +1,0 @@
-*.plist diff=plistbuddy
-*.pbxproj merge=mergepbx

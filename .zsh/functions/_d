@@ -1,2 +1,2 @@
-#compdef desktop
+#compdef d
 _files -W ~/Desktop -/

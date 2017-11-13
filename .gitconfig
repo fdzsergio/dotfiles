@@ -4,117 +4,29 @@
 	signingkey = 83B4287B
 [github]
   user = fdzsergio
-[apply]
-  whitespace = nowarn
-[branch]
-  autosetupmerge = true
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	up = pull --rebase
+	punch = blame
+	pish = push
+	tpush = push
 [color]
-  ui = auto
-  diff = auto
-  status = auto
-  branch = auto
-[commit]
-  gpgsign = true
-  verbose = true
+	diff = auto
+	status = auto
+	branch = auto
 [core]
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-  editor = vim
-  pager = diff-so-fancy | less -r
+	excludesfile = ~/.gitignore
+[apply]
+	whitespace = nowarn
+[merge]
+	tool = p4merge
+[difftool]
+	prompt = false
+[push]
+	default = current
 [credential]
 	helper = osxkeychain
-[diff]
-  tool = vimdiff
-  renames = copies
-  mnemonicprefix = true
-  algorithm = patience
-  compactionHeuristic = true
-[diff "plist"]
-  textconv = plutil -convert xml1 -o -
-[difftool]
-  prompt = false
-[difftool "idiff"]
-  cmd = "diff -Nuri -U3 --minimal \"$LOCAL\" \"$REMOTE\" | sed 's/^-/\\x1b[1;31m-/;s/^+/\\x1b[1;32m+/;s/^@/\\x1b[1;34m@/;s/$/\\x1b[0m/' | diff-highlight"
-[fetch]
-  prune = true
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-  required = true
 [ghi]
-  token = !security find-internet-password -a `git config github.user` -s github.com -l 'ghi token' -w
+	token = !security find-internet-password -a `git config github.user` -s github.com -l 'ghi token' -w
 [gpg]
-  program = gpg2
-[help]
-  autocorrect = 1
-[http]
-  postBuffer = 524288000
-  sslVerify = true
-[interactive]
-  diffFilter = diff-highlight
-[merge]
-  tool = vim
-  log = true
-  stat = true
-[merge "cocoapods"]
-  name = CocoaPods
-	driver = pod install
-[merge "bundler"]
-  name = bundler
-  driver = bundle
-[merge "mergepbx"]
-  name = Xcode project files merger
-  driver = /usr/local/bin/mergepbx %O %A %B
-[mergetool]
-  keepBackup = false
-[mergetool "vim"]
-  cmd = vim -c "normal\\ gg]c" -f \"$MERGED\"
-  prompt = false
-[pack]
-  threads = 0
-[pager]
-  show = diff-so-fancy | less --tabs=1,5 -RFX
-[push]
-  default = upstream
-[rebase]
-  autosquash = true
-  autostash = true
-  stat = true
-[receive]
-  denyCurrentBranch = updateInstead
-[rerere]
-  enabled = true
-[stash]
-  showPatch = true
-[status]
-  submodulesummary = true
-[submodule]
-  fetchJobs = 8
-[alias]
-  branches  = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  cleanup   = "!git branch --merged | grep  -v '\\*\\|master\\|beta' | xargs -n 1 git branch -d"
-  cleanupr  = "!git fetch --prune ; git branch -r --merged | grep origin | grep -v '>' | grep  -v '\\*\\|master\\|beta' | xargs -L1 | cut -d"/" -f2- | xargs git push origin --delete"
-  cp        = cherry-pick
-  deleted   = log --diff-filter=D --summary
-  find-sha  = branch -avv --contains
-  graph     = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset' --abbrev-commit --date=relative
-  lg        = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
-  log       = log --no-merges --name-status
-  ours      = checkout --ours --
-  outgoing  = log --branches --not --remotes '--format=format:%C(auto,yellow)%h%C(auto,reset) %s %C(auto,blue)%d' --decorate
-  po        = push origin
-  puf       = pull --ff-only
-  pufo      = pull --ff-only origin
-  puo       = push -u origin
-  pur       = pull --ff --rebase
-  puro      = pull --ff --rebase origin
-  root      = rev-parse --show-toplevel
-  score     = shortlog --numbered --summary --no-merges
-  status    = status -sb
-  subpush   = push --recurse-submodules=check
-  subup     = submodule update --init --recursive
-  sync      = fetch origin
-  theirs    = checkout --theirs --
-  undo      = checkout --
-  up        = pull --rebase
-  wtf       = !git-wtf
+	program = gpg

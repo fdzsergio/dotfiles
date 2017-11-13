@@ -1,8 +1,8 @@
 # Editor
-export EDITOR='vim'
+export EDITOR='code'
 
 # Paths
-export PATH="./bin:/usr/local/bin:$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:/System/Library/CoreServices:$PATH"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 
 # Colors

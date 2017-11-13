@@ -2,13 +2,11 @@
 
 source $SCRIPTS_PATH/functions
 
-info 'Installing Ruby'
-rbenv install 2.3.1
-rbenv global 2.3.1
+info 'Change Shell to ZSH'
+install_zsh
+
+info 'Installing Brew'
+install_brew
 
 info 'Installing Gems'
-gem install bundler cocoapods danger fastlane xcpretty xcode-install
-bundle config --global jobs `sysctl -n hw.ncpu`
-
-info 'Change Terminal Theme'
-open $DOTFILES_ROOT/theme/developer.terminal
+install_gems

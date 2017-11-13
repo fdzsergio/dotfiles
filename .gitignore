@@ -6,8 +6,12 @@
 .Trashes
 
 # Xcode
+*.pbxuser
+*.xcworkspace
 *.xccheckout
 *.xcscmblueprint
-xcuserdata
+*xcuserdata/
+DerivedData
 Carthage/
 Pods/
+.env
