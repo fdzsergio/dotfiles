@@ -1,7 +1,7 @@
 # matches case insensitive
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# pasting with tabs doesn't perform completion
+# Pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
 # Ignore compiled files on vi/vim completion

@@ -2,7 +2,7 @@
 export EDITOR='code'
 
 # Paths
-export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:/System/Library/CoreServices:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/usr/local/opt/python/libexec/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 
 # Colors
@@ -10,6 +10,14 @@ export CLICOLOR=1
 autoload colors; colors;
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 setopt PROMPT_SUBST
+export TERM=xterm-256color
+
+# Locale
+export LC_ALL"=en_US.UTF-8"
+export LANG="en_US.UTF-8"
+
+# Disable sending stats to speed up `pod install`
+export COCOAPODS_DISABLE_STATS=1
 
 # Timer
 REPORTTIME=10

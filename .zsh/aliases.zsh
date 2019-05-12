@@ -20,10 +20,6 @@ alias gi='git'
 # Editor
 alias c='code .'
 
-# Rails
-alias tlog='tail -f log/development.log'
-alias b='bundle exec'
-
 # macOS
 alias o='open .'
 alias screensaver='/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
@@ -34,6 +30,8 @@ alias $=' '
 
 # Xcode
 alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData'
+alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
+alias watchos="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator\ \(Watch\).app"
 
 # Brew
 alias cask="brew cask"
@@ -41,9 +39,6 @@ alias cask="brew cask"
 # Chrome
 alias chrome='open -a "Google Chrome" --args --incognito'
 alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; echo "DNS cache flushed"'
-
-# Tower
-alias tower='gittower'
 
 # Utilities
 alias t='tail -f'

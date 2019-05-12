@@ -58,11 +58,26 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # Dock
 #
 
+# Set the icon size of Dock items to 64 pixels
+defaults write com.apple.dock tilesize -int 64
+
+# Enable dock magification
+defaults write com.apple.dock magnification -bool true
+
+# Set the icon magnification size of Dock items to 72 pixels
+defaults write com.apple.dock largesize -int 72
+
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
+# Put the dock on down side
+# defaults write com.apple.dock orientation -string "down"
+
 # Dock tweaks
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
+
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
 
 #
 # Mission Control
@@ -70,6 +85,56 @@ defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # Don't automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Disable Spotlight indexing for any volume that gets mounted and has not yet
+# been indexed before.
+# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
+# Change indexing order and disable some search results
+# Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
+# 	MENU_DEFINITION
+# 	MENU_CONVERSION
+# 	MENU_EXPRESSION
+# 	MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
+# 	MENU_WEBSEARCH             (send search queries to Apple)
+# 	MENU_OTHER
+defaults write com.apple.spotlight orderedItems -array \
+	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
+	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
+	'{"enabled" = 1;"name" = "PDF";}' \
+	'{"enabled" = 0;"name" = "FONTS";}' \
+	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
+	'{"enabled" = 0;"name" = "MESSAGES";}' \
+	'{"enabled" = 0;"name" = "CONTACT";}' \
+	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
+	'{"enabled" = 0;"name" = "IMAGES";}' \
+	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
+	'{"enabled" = 0;"name" = "MUSIC";}' \
+	'{"enabled" = 0;"name" = "MOVIES";}' \
+	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+	'{"enabled" = 0;"name" = "SOURCE";}' \
+	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
+	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+	'{"enabled" = 1;"name" = "MENU_EXPRESSION";}' \
+	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
+# Load new settings before rebuilding the index
+killall mds > /dev/null 2>&1
+
+# Make sure indexing is enabled for the main volume
+sudo mdutil -i on / > /dev/null
+
+# Rebuild the index from scratch
+sudo mdutil -E / > /dev/null
 
 #
 # Terminal
@@ -359,8 +424,8 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # Shows ethernet connected computers in airdrop
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Use Google DNS
-sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+# Use Cloudfront DNS
+sudo networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1
 
 #
 # Xcode
@@ -387,9 +452,6 @@ defaults write com.apple.dt.Xcode DVTDownloadableAutomaticUpdate -bool true
 # Live issues
 defaults write com.apple.dt.Xcode IDEEnableLiveIssues -bool true
 
-# Continue building after errors
-defaults write com.apple.dt.Xcode IDEBuildingContinueBuildingAfterErrors -bool true
-
 # Setup page guide
 defaults write com.apple.dt.Xcode DVTTextShowPageGuide -bool true
 defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 110
@@ -397,6 +459,9 @@ defaults write com.apple.dt.Xcode DVTTextPageGuideLocation -int 110
 # Max number of lines
 defaults write com.apple.dt.Xcode IDEIssueNavigatorDetailLevel -int 10
 defaults write com.apple.dt.Xcode IDESearchNavigatorDetailLevel -int 10
+
+# Enable internal debug menu
+defaults write com.apple.dt.Xcode ShowDVTDebugMenu -bool false
 
 # Source control local revision side
 defaults write com.apple.dt.Xcode DVTComparisonOrientationDefaultsKey -int 0
@@ -407,12 +472,12 @@ defaults write com.apple.dt.Xcode AssistantEditorsLayout -int 1
 # Use open quickly to open in the focused pane
 defaults write com.apple.dt.Xcode IDEEditorCoordinatorTarget_Click -string FocusedEditor
 
+# Use custom derived data location
+defaults write com.apple.dt.Xcode IDECustomDerivedDataLocation -string build.noindex
+
 # Show build times in toolbar
 # http://cocoa.tumblr.com/post/131023038113/build-speed
 defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool true
-
-# Makes Xcode build with all available CPUs
-defaults write com.apple.dt.Xcode IDEBuildOperationMaxNumberOfConcurrentCompileTasks `sysctl -n hw.ncpu`
 
 # Add more information to Xcode's build output about why specific commands are being run
 # https://twitter.com/bdash/status/661742266487205888
@@ -423,3 +488,32 @@ defaults write com.apple.dt.Xcode ExplainWhyBuildCommandsAreRun -bool true
 # I also have a `xcuser` shell command to wipe this state so you don't reopen
 # storyboards and dirty the diff, or just take 30 seconds to launch
 defaults write com.apple.dt.Xcode IDEDisableStateRestoration -bool true
+
+# Write detailed build system info into derived data
+# If you don't enable this but `mkdir /tmp/xcode_dependency_logs` the logs will
+# be created there instead
+defaults write com.apple.dt.Xcode EnableBuildSystemLogging -bool true
+
+# Disable the print keyboard shortcut in Xcode. I accidentally hit this a lot
+defaults write com.apple.dt.Xcode NSUserKeyEquivalents -dict-add "Print..." "nil"
+
+# Enable extra logging for XCBuild
+defaults write com.apple.dt.XCBuild EnableDebugActivityLogs -bool YES
+
+# Make the tab key actually be a tab key
+defaults write com.apple.dt.Xcode DVTTextTabKeyIndentBehavior -string Never
+
+# Set the keybindings to my customizations (see $DOTFILES/xcode)
+# Stored in ~/Library/Developer/Xcode/UserData/KeyBindings
+defaults write com.apple.dt.Xcode IDEKeyBindingCurrentPreferenceSet -string custom.idekeybindings
+
+# Set custom colorscheme
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string panic.xccolortheme
+
+# Show indexing progress
+# https://twitter.com/dmartincy/status/1034930612543676418
+defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress -bool true
+
+# Make command click jump to definition instead of showing the menu
+defaults write com.apple.dt.Xcode IDECommandClickNavigates -bool YES
+

@@ -4,14 +4,17 @@
 .LSOverride
 .Spotlight-V100
 .Trashes
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# Xcode
-*.pbxuser
-*.xcworkspace
-*.xccheckout
-*.xcscmblueprint
-*xcuserdata/
-DerivedData
-Carthage/
-Pods/
-.env
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+Icon
+._*

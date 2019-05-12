@@ -1,6 +1,7 @@
 --- 
-gem: --no-ri --no-rdoc
-:benchmark: false
+gem: --no-document --no-ri --no-rdoc --full-index
 :verbose: true
 :backtrace: false
+:benchmark: false
 :bulk_threshold: 1000
+:update_sources: true

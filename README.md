@@ -16,4 +16,4 @@ dotfiles config based on [Sam Soffes](https://github.com/soffes/dotfiles), [Este
 
 ## License
 
-dotfiles is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/fdzsergio/dotfiles/master/LICENSE) file for more info.
+dotfiles is released under the Apache license. See the [LICENSE](https://raw.githubusercontent.com/fdzsergio/dotfiles/master/LICENSE) file for more details.

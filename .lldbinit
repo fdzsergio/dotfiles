@@ -4,3 +4,11 @@ command script import /usr/local/opt/chisel/libexec/fblldb.py
 # http://furbo.org/2015/05/11/an-import-ant-change-in-xcode/
 command alias uikit expr @import UIKit
 command alias foundation expr @import Foundation
+
+# Breakpoitns
+breakpoint set --name malloc_error_break
+breakpoint set pending --name malloc_error_break
+
+set breakpoint pending on
+set breakpoint malloc_error_break
+set breakpoint pending auto
